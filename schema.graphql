@@ -1,0 +1,301 @@
+schema {
+  query: AppQuery
+  mutation: AppMutation
+}
+
+type AppMutation {
+  addComment(input: CreateCommentMutationInput!): CreateCommentMutationPayload
+  deleteComment(input: DeleteCommentMutationInput!): DeleteCommentMutationPayload
+  createArticle(input: CreateArticleMutationInput!): CreateArticleMutationPayload
+  deleteArticle(input: DeleteArticleMutationInput!): DeleteArticleMutationPayload
+  updateArticle(input: UpdateArticleMutationInput!): UpdateArticleMutationPayload
+  favoriteArticle(input: FavoriteArticleMutationInput!): FavoriteArticleMutationPayload
+  unfavoriteArticle(input: UnFavoriteArticleMutationInput!): UnFavoriteArticleMutationPayload
+  createUser(input: CreateUserMutationInput!): CreateUserMutationPayload
+  updateUser(input: UpdateUserMutationInput!): UpdateUserMutationPayload
+  loginUser(input: UserLoginMutationInput!): UserLoginMutationPayload
+  verifyToken(input: VerifyInput!): VerifyPayload
+  refreshToken(input: RefreshInput!): RefreshPayload
+  followProfile(input: FollowProfileMutationInput!): FollowProfileMutationPayload
+  unfollowProfile(input: UnFollowProfileMutationInput!): UnFollowProfileMutationPayload
+}
+
+type AppQuery {
+  articles(offset: Int, before: String, after: String, first: Int, last: Int, slug: String, title: String, tag: String, authorName: String): ArticleNodeConnection
+  getArticle(slug: String!): ArticleNode
+  currentUser: UserNode
+  getProfile(username: String!): Profile
+  _debug: DjangoDebug
+}
+
+type ArticleNode implements Node {
+  id: ID!
+  createDate: DateTime!
+  lastUpdated: DateTime!
+  title: String!
+  slug: String!
+  description: String
+  body: String!
+  tags: [String!]!
+  author: UserNode!
+  comments(offset: Int, before: String, after: String, first: Int, last: Int): CommentNodeConnection!
+  favorited: Boolean
+  favoritesCount: Int
+}
+
+type ArticleNodeConnection {
+  pageInfo: PageInfo!
+  edges: [ArticleNodeEdge]!
+}
+
+type ArticleNodeEdge {
+  node: ArticleNode
+  cursor: String!
+}
+
+type CommentNode implements Node {
+  id: ID!
+  createDate: DateTime!
+  lastUpdated: DateTime!
+  body: String!
+  author: UserNode!
+}
+
+type CommentNodeConnection {
+  pageInfo: PageInfo!
+  edges: [CommentNodeEdge]!
+}
+
+type CommentNodeEdge {
+  node: CommentNode
+  cursor: String!
+}
+
+input CreateArticleMutationInput {
+  title: String!
+  slug: String
+  description: String
+  body: String!
+  tags: [String]
+  clientMutationId: String
+}
+
+type CreateArticleMutationPayload {
+  success: Boolean
+  article: ArticleNode
+  clientMutationId: String
+}
+
+input CreateCommentMutationInput {
+  body: String!
+  articleSlug: String!
+  clientMutationId: String
+}
+
+type CreateCommentMutationPayload {
+  success: Boolean
+  comment: CommentNode
+  clientMutationId: String
+}
+
+input CreateUserMutationInput {
+  email: String!
+  username: String!
+  bio: String
+  password: String!
+  confirmPassword: String!
+  image: Upload
+  clientMutationId: String
+}
+
+type CreateUserMutationPayload {
+  success: Boolean
+  user: UserNode!
+  clientMutationId: String
+}
+
+scalar DateTime
+
+input DeleteArticleMutationInput {
+  slug: String!
+  clientMutationId: String
+}
+
+type DeleteArticleMutationPayload {
+  success: Boolean
+  clientMutationId: String
+}
+
+input DeleteCommentMutationInput {
+  commentId: ID!
+  clientMutationId: String
+}
+
+type DeleteCommentMutationPayload {
+  success: Boolean
+  clientMutationId: String
+}
+
+type DjangoDebug {
+  sql: [DjangoDebugSQL]
+}
+
+type DjangoDebugSQL {
+  vendor: String!
+  alias: String!
+  sql: String
+  duration: Float!
+  rawSql: String!
+  params: String!
+  startTime: Float!
+  stopTime: Float!
+  isSlow: Boolean!
+  isSelect: Boolean!
+  transId: String
+  transStatus: String
+  isoLevel: String
+  encoding: String
+}
+
+input FavoriteArticleMutationInput {
+  articleSlug: String!
+  clientMutationId: String
+}
+
+type FavoriteArticleMutationPayload {
+  success: Boolean
+  clientMutationId: String
+}
+
+input FollowProfileMutationInput {
+  username: String!
+  clientMutationId: String
+}
+
+type FollowProfileMutationPayload {
+  success: Boolean
+  clientMutationId: String
+}
+
+scalar GenericScalar
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Profile {
+  email: String!
+  username: String!
+  bio: String
+  image: String
+  following: Boolean!
+  id: ID
+}
+
+input RefreshInput {
+  token: String
+  clientMutationId: String
+}
+
+type RefreshPayload {
+  payload: GenericScalar!
+  refreshExpiresIn: Int!
+  clientMutationId: String
+  token: String!
+}
+
+input UnFavoriteArticleMutationInput {
+  articleSlug: String!
+  clientMutationId: String
+}
+
+type UnFavoriteArticleMutationPayload {
+  success: Boolean
+  clientMutationId: String
+}
+
+input UnFollowProfileMutationInput {
+  username: String!
+  clientMutationId: String
+}
+
+type UnFollowProfileMutationPayload {
+  success: Boolean
+  clientMutationId: String
+}
+
+input UpdateArticleMutationInput {
+  slug: String!
+  title: String
+  description: String
+  body: String
+  clientMutationId: String
+}
+
+type UpdateArticleMutationPayload {
+  success: Boolean
+  article: ArticleNode
+  clientMutationId: String
+}
+
+input UpdateUserMutationInput {
+  email: String
+  username: String
+  bio: String
+  clientMutationId: String
+}
+
+type UpdateUserMutationPayload {
+  success: Boolean
+  user: UserNode
+  clientMutationId: String
+}
+
+scalar Upload
+
+input UserLoginMutationInput {
+  clientMutationId: String
+  email: String!
+  password: String!
+}
+
+type UserLoginMutationPayload {
+  payload: GenericScalar!
+  refreshExpiresIn: Int!
+  user: UserNode
+  clientMutationId: String
+  token: String!
+}
+
+type UserNode implements Node {
+  id: ID!
+  lastLogin: DateTime
+  createDate: DateTime!
+  lastUpdated: DateTime!
+  username: String!
+  email: String!
+  isActive: Boolean!
+  image: String
+  bio: String
+  isStaff: Boolean!
+  isSuperuser: Boolean!
+  articles(offset: Int, before: String, after: String, first: Int, last: Int): ArticleNodeConnection!
+  comments(offset: Int, before: String, after: String, first: Int, last: Int): CommentNodeConnection!
+}
+
+input VerifyInput {
+  token: String
+  clientMutationId: String
+}
+
+type VerifyPayload {
+  payload: GenericScalar!
+  clientMutationId: String
+}
