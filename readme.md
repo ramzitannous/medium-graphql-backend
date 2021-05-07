@@ -14,9 +14,15 @@ This codebase was created to demonstrate a fully fledged fullstack application b
 For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/ramzitannous/medium-graphql-backend/master/playground.png" width="800" height="400"/>
+<img src="https://raw.githubusercontent.com/ramzitannous/medium-graphql-backend/master/example_images/article_query.png" width="800" height="400"/>
 
-<img src="https://raw.githubusercontent.com/ramzitannous/medium-graphql-backend/master/playground_mutation.png" width="800" height="400"/>
+<img src="https://raw.githubusercontent.com/ramzitannous/medium-graphql-backend/master/example_images/add_article.png" width="800" height="400"/>
+
+<img src="https://raw.githubusercontent.com/ramzitannous/medium-graphql-backend/master/example_images/add_comment.png" width="800" height="400"/>
+
+<img src="https://raw.githubusercontent.com/ramzitannous/medium-graphql-backend/master/example_images/get_profile.png" width="800" height="400"/>
+
+<img src="https://raw.githubusercontent.com/ramzitannous/medium-graphql-backend/master/example_images/current_user.png" width="800" height="400"/>
 
 # How it works
 A Graphql Implementation using facebook relay specs
