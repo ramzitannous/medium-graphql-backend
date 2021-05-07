@@ -1,19 +1,32 @@
-# [Graphql RealWorld Example App]
+
+ 
+# [Graphql RealWorld Example App] 
+
 
 > ### [Graphene-Django](https://docs.graphene-python.org/projects/django/en/latest/#graphene-django) codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
 A Graphql server implementation using [Graphene-Django](https://docs.graphene-python.org/projects/django/en/latest/#graphene-django)
 
+<img src="https://raw.githubusercontent.com/ramzitannous/medium-graphql-backend/master/logo.png" height="200" width="400"/>
+
 This codebase was created to demonstrate a fully fledged fullstack application built with Django including CRUD operations, authentication, routing, pagination, and more.
 
 For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
+## Screenshots
 
+<img src="https://raw.githubusercontent.com/ramzitannous/medium-graphql-backend/master/playground.png" width="800" height="400"/>
 
 # How it works
+A Graphql Implementation using facebook relay specs
 
-A Graphql Implementation with facebook relay specs
+Full graphql schema can be found at [`schema.graphql`](https://github.com/ramzitannous/medium-graphql-backend/blob/master/schema.graphql)
 
-Full graphql schema can be found at `schema.graphql`
+**Folder Structure:**
+1) `core`: contains all core functionalites ex (BaseModel, BaseMutation)
+2) `users` contains user related mutation, models, types, queries
+3) `articles` contains all article related models, mutation, types, queries
+4) `tests` all test related stuff
+5) `medium` contains all django urls, settings, and others.
 
 # Getting started
 
@@ -24,9 +37,11 @@ Full graphql schema can be found at `schema.graphql`
 `DEBUG=True ` 
 `SECRET_KEY=test-secret-key`
  `DATABASE_URL=postgresql://postgres:password@localhost:5432/medium`
-3) run server
+ 3) run migration
+ `poetry run python manage.py migrate`
+4) run server
 `poetry  run python manage.py runserver 8000`
-4) open playground using http://localhost:8000/graphql
+5) open graphql playground using http://localhost:8000/playground
 
 ## Third Party Packages
 1) `graphene-django`: Add Graphql to a django server
@@ -40,3 +55,4 @@ some tests were added to `tests` directory, packages used for testing:
 1) `pytest`
 2) `pytest-django`
 3) `factory-boy`
+****
