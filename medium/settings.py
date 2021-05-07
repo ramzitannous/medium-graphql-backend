@@ -154,5 +154,4 @@ AUTHENTICATION_BACKENDS = [
 GRAPHQL_JWT = {
     "JWT_VERIFY_EXPIRATION": True,
     "JWT_EXPIRATION_DELTA": timedelta(days=1),
-    "JWT_AUTH_HEADER_NAME": "Authorization",
 }
