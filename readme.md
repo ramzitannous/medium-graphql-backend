@@ -16,6 +16,8 @@ For more information on how to this works with other frontends/backends, head ov
 
 <img src="https://raw.githubusercontent.com/ramzitannous/medium-graphql-backend/master/playground.png" width="800" height="400"/>
 
+<img src="https://raw.githubusercontent.com/ramzitannous/medium-graphql-backend/master/playground_mutation.png" width="800" height="400"/>
+
 # How it works
 A Graphql Implementation using facebook relay specs
 
