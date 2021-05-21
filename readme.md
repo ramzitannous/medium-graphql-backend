@@ -50,6 +50,8 @@ Full graphql schema can be found at [`schema.graphql`](https://github.com/ramzit
 4) run server
 `poetry  run python manage.py runserver 8000`
 5) open graphql playground using http://localhost:8000/playground
+6) to connect to it via API use http://localhost:8000
+
 
 ## Third Party Packages
 1) `graphene-django`: Add Graphql to a django server
